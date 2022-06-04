@@ -1,0 +1,10 @@
+pandas
+scikit-learn
+joblib
+fastapi[all]
+uvicorn[standard]
+SQLAlchemy==1.4.36
+python-jose
+passlib~=1.7.4
+bcrypt
+sqlalchemy_utils-0.38.2
