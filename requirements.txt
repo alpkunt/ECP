@@ -7,4 +7,6 @@ SQLAlchemy==1.4.36
 python-jose
 passlib~=1.7.4
 bcrypt
-sqlalchemy_utils-0.38.2
+sqlalchemy_utils
+psycopg2-binary
+python-dotenv
