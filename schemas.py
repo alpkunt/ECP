@@ -14,7 +14,7 @@ class Predictions(BaseModel):
     date: datetime
     prediction: Dict
     class Config:
-        orm_mode = True
+        orm_mode =True
 
 
 class UserBase(BaseModel):
