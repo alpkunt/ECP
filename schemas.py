@@ -18,7 +18,7 @@ class Predictions(BaseModel):
 
 
 class UserBase(BaseModel):
-    username: str
+    username:str
     email: str
     password: str
     #created_date: Union[datetime, None] = Body(default=None)

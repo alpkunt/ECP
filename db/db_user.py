@@ -12,7 +12,7 @@ def create_user(request: UserBase, db: Session):
         email=request.email,
         created_date=request.created_date,
         hashed_password=Hash.bcrypt(request.password),  # buraya tekrar bak!
-        is_Active=True
+        is_Active= True
     )
 
     db.add(new_user)

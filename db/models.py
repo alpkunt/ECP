@@ -3,7 +3,7 @@ from sqlalchemy.orm import relationship
 from db.database import Base
 from sqlalchemy import Column, String, Integer, Float, DateTime, Boolean, JSON, ForeignKey
 
-from datetime import datetime, timezone
+from datetime import datetime,timezone
 
 def get_utc_now_timestamp() -> datetime:
     return datetime.utcnow().replace(tzinfo=timezone.utc).astimezone(tz=None)

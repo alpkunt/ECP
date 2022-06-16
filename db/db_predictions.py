@@ -70,10 +70,10 @@ def insert_prediction(prediction_result, request, db, current_user):
         month = date.month,
         day= date.day,
         hour = date.hour,
-        consumption = None, # burası, gerçek değer ölçüldükten sonra update edileceği için başlangıçta null verdim.
-        prediction = prediction_result, #burada mecburen kolona bir liste veya bir dictionary falan göndereceğiz!
-        client_ip = request.client.host,
-        user_id = current_user.id
+        consumption= None, # burası, gerçek değer ölçüldükten sonra update edileceği için başlangıçta null verdim.
+        prediction= prediction_result, #burada mecburen kolona bir liste veya bir dictionary falan göndereceğiz!
+        client_ip= request.client.host,
+        user_id=current_user.id
     )
 
 

@@ -7,8 +7,8 @@ from db import db_predictions
 from auth.oauth2 import get_current_user
 
 router = APIRouter(
-    prefix= '/predictions',
-    tags = ['predictions']
+    prefix='/predictions',
+    tags=['predictions']
 )
 
 @router.post("/days/{date}/{days}")
