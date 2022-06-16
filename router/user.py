@@ -12,12 +12,15 @@ router = APIRouter(
 )
 
 
-
-
 #create user
 @router.post('/', response_model=UserDisplay)
 def create_user(request: UserBase, db: Session = Depends(get_db)):
     return db_user.create_user(request, db)
+
+
+@router.get("/username/{username}", response_model=UserDisplay)
+def read_user_by_username(username : str, db:Session = Depends(get_db)):
+    return db_user.get_user_by_username(username, db)
 
 # read all user
 # dikkat read all dediğimiz için, response bir liste olmalı!
@@ -42,6 +45,8 @@ def read_user(id: int, db:Session = Depends(get_db)):
 @router.get("/{id}/{email}", response_model=UserDisplay)
 def read_user_id_email(id: int, email : str, db:Session = Depends(get_db)):
     return db_user.get_user_email_id(id, email, db)
+
+
 
 
 

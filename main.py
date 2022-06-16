@@ -3,9 +3,6 @@ from fastapi import FastAPI, HTTPException
 from router import user, predictions
 from db import models
 from db.database import engine
-#from exception import StoryException
-from fastapi import Request
-from fastapi.responses import JSONResponse
 from auth import authentication
 
 models.Base.metadata.create_all(bind=engine)

@@ -1,9 +1,8 @@
 from sqlalchemy.orm import relationship
 
 from db.database import Base
-from sqlalchemy import Column, String, Integer, Float, DateTime, Boolean
-from sqlalchemy.sql import func
-from sqlalchemy_utils import EmailType
+from sqlalchemy import Column, String, Integer, Float, DateTime, Boolean, JSON, ForeignKey
+
 from datetime import datetime, timezone
 
 def get_utc_now_timestamp() -> datetime:
@@ -16,15 +15,16 @@ class ElectricityConsumption(Base):
 
     id = Column(Integer, autoincrement=True, primary_key=True)
     date = Column(DateTime(timezone=True))
-    year = Column(DateTime)
-    month = Column(DateTime)
-    day = Column(DateTime)
-    hour = Column(DateTime)
+    year = Column(Integer)
+    month = Column(Integer)
+    day = Column(Integer)
+    hour = Column(Integer)
     consumption = Column(Float)
-    prediction = Column(Float)
-    prediction_time = Column(DateTime, default=datetime.utcnow().timestamp())
+    prediction = Column(JSON)
+    #prediction_time = Column(DateTime, default=datetime.utcnow().timestamp())
     client_ip = Column(String)
-    # user_id = relationship("User", back_populates='predictions')
+    user_id = Column(Integer, ForeignKey('users.id'))
+    user = relationship("User", back_populates='predictions')
 
 
 class User(Base):
@@ -36,4 +36,5 @@ class User(Base):
     email = Column(String)
     hashed_password = Column(String)
     is_Active = Column(Boolean, default=True)
+    predictions = relationship('ElectricityConsumption', back_populates='user')
     

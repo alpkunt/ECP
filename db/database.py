@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()  # take environment variables from .env.
 SQLALCHEMY_DATABASE_URL=os.getenv('SQLALCHEMY_DATABASE_URL')
 
-engine = create_engine(SQLALCHEMY_DATABASE_URL)
+engine = create_engine(SQLALCHEMY_DATABASE_URL) #echo=True for debug? yada sadece sqlmodel da mı var?
 
 SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
 

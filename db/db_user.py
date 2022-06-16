@@ -3,7 +3,7 @@ from schemas import UserBase, UserUpdate
 from db.models import User
 from db.hash import Hash
 from fastapi import HTTPException, status
-from datetime import datetime
+
 
 
 def create_user(request: UserBase, db: Session):
@@ -33,19 +33,19 @@ def get_user(id: int, db: Session):
     return user
 
 
-# def get_user_by_username(username: str, db: Session):
-#     user = db.query(User).filter(User.username == username).first()
-#     if not user:
-#         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f'User :{username} is not here!')
-#
-#     return user
+def get_user_by_username(username: str, db: Session):
+    user = db.query(User).filter(User.username == username).first()
+    if not user:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f'User :{username} is not here!')
+
+    return user
 
 
 
 def get_user_by_email(email: str, db:Session):
     user = db.query(User).filter(User.email == email).first()
     if not user:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f'User :{email} is not here!')
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f'Email :{email} is not here!')
 
     return user
 

@@ -26,7 +26,7 @@ class UserBase(BaseModel):
 class UserDisplay(BaseModel):
     username: str
     email: str
-    items: List[Predictions] =[] # yukarda predictions classs olusturduk, aslında liste içinde nested yukardaki predictions listelenecek!
+    predictions: List[Predictions] =[] # yukarda predictions classs olusturduk, aslında liste içinde nested yukardaki predictions listelenecek!
     # dikkat get all users dendiğinde, itemsta olduğu gibi geliyor!
     # yani kullanıcının ne kadar ürettiği icerik var hepsi geliyor. Bir mantık hatası var burda
     class Config:
