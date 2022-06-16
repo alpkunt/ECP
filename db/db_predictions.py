@@ -61,7 +61,7 @@ def predictions_by_date_hour(forecaster, date: str, hours: int):
 
 ######################################
 
-def insert_prediction(prediction_result, request, db, current_user):
+def insert_prediction(prediction_result, request, db):
     date = datetime.now()
 
     new_prediction_result = models.ElectricityConsumption(
@@ -72,8 +72,7 @@ def insert_prediction(prediction_result, request, db, current_user):
         hour = date.hour,
         consumption = None, # burası, gerçek değer ölçüldükten sonra update edileceği için başlangıçta null verdim.
         prediction = prediction_result, #burada mecburen kolona bir liste veya bir dictionary falan göndereceğiz!
-        client_ip = request.client.host,
-        user_id = current_user.id
+        client_ip = request.client.host
     )
 
 
@@ -85,20 +84,20 @@ def insert_prediction(prediction_result, request, db, current_user):
 
 
 
-def days_prediction_and_db(date,days, request, db, current_user):
+def days_prediction_and_db(date,days, request, db):
     prediction_result = predictions_by_date_day(forecaster, date, days)
     prediction_result_json = prediction_result.to_json(date_format='iso', double_precision=2)
     prediction_result_json_parsed = json.loads(prediction_result_json)
     """db db db db"""
-    insert_prediction(prediction_result_json_parsed,request, db,current_user)
+    insert_prediction(prediction_result_json_parsed,request, db)
     # return prediction_result olarak gönderince pandas series object yolluyor responsea
     return prediction_result_json_parsed
 
-def hours_prediction_and_db(date, hours,request,db, current_user):
+def hours_prediction_and_db(date, hours,request,db):
     prediction_result = predictions_by_date_hour(forecaster, date, hours)
     prediction_result_json = prediction_result.to_json(date_format='iso', double_precision=2)
     prediction_result_json_parsed = json.loads(prediction_result_json)
 
     """db db db"""
-    insert_prediction(prediction_result_json_parsed, request, db, current_user)
+    insert_prediction(prediction_result_json_parsed, request, db)
     return prediction_result_json_parsed

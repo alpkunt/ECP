@@ -1,8 +1,9 @@
+from fastapi import Body
 from pydantic import BaseModel, Field
-from typing import Optional
-from typing import List, Dict
-from datetime import datetime, timezone
-
+from typing import Optional, Union
+from typing import List
+from datetime import datetime, time, timedelta, timezone
+from db.hash import Hash
 
 
 def get_utc_now_timestamp() -> datetime:
@@ -11,10 +12,7 @@ def get_utc_now_timestamp() -> datetime:
 # NOT, display olan herşeyde orm mode True diyeceğiz, çunku, display donerken veri tabanı ile data transformu yaparken problem cıkarmıyor!
 
 class Predictions(BaseModel):
-    date: datetime
-    prediction: Dict
-    class Config:
-        orm_mode = True
+    pass
 
 
 class UserBase(BaseModel):
@@ -47,6 +45,5 @@ class UserUpdate(BaseModel):
     email: Optional[str] = None
     #password: Optional[str]
 
-class UserID(UserBase):
-    id: int
+
 
